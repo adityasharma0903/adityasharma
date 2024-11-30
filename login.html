@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Success</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, red, #00d4ff);
+            padding: 1rem;
+            box-sizing: border-box;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #8B0000, #00008B);
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-top: 0.5em;
+        }
+
+        .button {
+            display: inline-block;
+            height: 50px;
+            width: 150px;
+            border-radius: 15px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dark-mode .button {
+            background-color: #333;
+        }
+
+        .dark-mode .button:hover {
+            background-color: #444;
+        }
+
+        .button a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .dark-mode .button a {
+            color: white;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #45a049;
+        }
+
+        .dark-mode .theme-toggle {
+            background-color: #f1c40f;
+            color: #2c3e50;
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background-color: #f39c12;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .button {
+                height: 40px;
+                width: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .button {
+                height: 36px;
+                width: 120px;
+            }
+
+            .theme-toggle {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <main class="container">
+        <h1>You are logged in successfully</h1>
+        <p>Click on the below button to redirect to the main page!</p>
+        <button class="button">
+            <a href="chitkara.html">WELCOME BACK</a>
+        </button>
+    </main>
+    <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 380px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Light Mode';
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+            }
+        }
+
+        window.addEventListener('message', function(event) {
+            if (event.data === 'chatbotOpened') {
+                document.getElementById('chatbot-frame').style.width = '380px';
+                document.getElementById('chatbot-frame').style.height = '600px';
+            } else if (event.data === 'chatbotClosed') {
+                document.getElementById('chatbot-frame').style.width = '100px';
+                document.getElementById('chatbot-frame').style.height = '100px';
+            }
+        }, false);
+    </script>
+</body>
+</html>
+

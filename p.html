@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Chitkara University</title>
+      <link rel="stylesheet" href="chitkara.css">
+    <link rel="stylesheet" href="chatbot.html">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/79652d1626.js" crossorigin="anonymous"></script>
+  <style>
+           /* Add any additional styles here */
+    body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .theme-toggle {
+      background-color: #ffffff;
+      border: 2px solid #000000;
+      border-radius: 20px;
+      cursor: pointer;
+      padding: 5px 10px;
+      position: relative;
+      width: 60px;
+      height: 30px;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle-switch {
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: 26px;
+      height: 26px;
+      background-color: #000000;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    body.dark-mode .theme-toggle {
+      background-color: #333333;
+      border-color: #ffffff;
+    }
+
+    body.dark-mode .theme-toggle-switch {
+      transform: translateX(30px);
+      background-color: #ffffff;
+    }
+
+    #profile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
+      background-color: white;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      transition: right 0.3s ease-in-out;
+      z-index: 1001;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #profile-sidebar.open {
+      right: 0;
+    }
+
+        /* New CSS for dark mode */
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        body.dark-mode #nav1 ul {
+            background-color: #333333;
+        }
+
+        body.dark-mode #nav2 ul {
+            background-color: #800000;
+        }
+
+        body.dark-mode #adm2 {
+            background-color: #b38f00;
+        }
+
+        /* Toggle button styles */
+        .theme-toggle {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            cursor: pointer;
+            top: -8px;
+            left: 60px;
+            padding: 5px 10px;
+            position: relative;
+            width: 60px;
+            height: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            font-size: 20px;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            font-size: 20px;
+        }
+
+        .theme-toggle-switch {
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            width: 26px;
+            height: 26px;
+            background-color: #000000;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        body.dark-mode .theme-toggle {
+            background-color: #333333;
+            border-color: #ffffff;
+        }
+
+        body.dark-mode .theme-toggle-switch {
+            transform: translateX(30px);
+            background-color: #ffffff;
+        }
+
+
+
+        #profile-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 1000;
+        }
+
+        #profile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1001;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #profile-sidebar.open {
+            right: 0;
+        }
+
+        #close-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        #logout-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .profile-info {
+            margin-top: 40px;
+        }
+
+
+
+
+
+
+
+
+
+
+    .navbar-nav {
+      gap: 15px;
+    }
+
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 75vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .mobile-image {
+      width: 100%;
+      height: 30vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .contact-info {
+      font-size: 0.8rem;
+    }
+
+
+
+    
+
+    @media (max-width: 575.98px) {
+      .hero-image {
+        height: 40vh;
+      }
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+      color: inherit;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover,
+    .navbar-light .navbar-nav .nav-link:focus {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .bg-red {
+      background-color: #d00000;
+    }
+
+    .bg-light-blue {
+      background-color: #e6f2ff;
+    }
+
+    .navbar-light .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+  </style>
+</head>
+<body>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 380px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe>
+  <script>
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const profileButton = document.getElementById('profile-button');
+  const profileSidebar = document.getElementById('profile-sidebar');
+  const closeSidebarButton = document.getElementById('close-sidebar');
+  const logoutButton = document.getElementById('logout-button');
+  const usernameElement = document.getElementById('username');
+  const emailElement = document.getElementById('email');
+  const registrationIdElement = document.getElementById('registration-id');
+  const profilePicture = document.getElementById('profile-picture');
+  const profilePictureInput = document.getElementById('profile-picture-input');
+  const editProfileButton = document.getElementById('edit-profile-button');
+  const editProfileForm = document.getElementById('edit-profile-form');
+  const saveProfileButton = document.getElementById('save-profile-button');
+  const editUsernameInput = document.getElementById('edit-username');
+  const editEmailInput = document.getElementById('edit-email');
+
+  function updateProfileSection() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+
+      if (currentUser && isAuthenticated) {
+          profileButton.textContent = `Hi, ${currentUser .username}`;
+          usernameElement.textContent = `Username: ${currentUser.username}`;
+          emailElement.textContent = `Email: ${currentUser.email}`;
+          registrationIdElement.textContent = `Registration ID: ${currentUser.registrationId}`;
+          profilePicture.src = currentUser.profilePicture || '/placeholder.svg?height=128&width=128';
+          profileSidebar.style.display = 'block';
+      } else {
+          profileButton.textContent = 'Profile';
+          usernameElement.textContent = '';
+          emailElement.textContent = '';
+          registrationIdElement.textContent = '';
+          profilePicture.src = '/placeholder.svg?height=128&width=128';
+          profileSidebar.style.display = 'none';
+      }
+  }
+
+  function toggleSidebar() {
+      profileSidebar.classList.toggle('open');
+  }
+
+  profileButton.addEventListener('click', function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+
+      if (currentUser && isAuthenticated) {
+          toggleSidebar();
+      } else {
+          window.location.href = 'feeproject.html';
+      }
+  });
+
+  closeSidebarButton.addEventListener('click', function() {
+      profileSidebar.classList.remove('open');
+  });
+
+  logoutButton.addEventListener('click', function() {
+      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('currentUser');
+      updateProfileSection();
+      profileSidebar.classList.remove('open');
+      window.location.href = 'feeproject.html';
+  });
+
+  profilePictureInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              profilePicture.src = e.target.result;
+              const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+              currentUser.profilePicture = e.target.result;
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          };
+          reader.readAsDataURL(file);
+      }
+  });
+
+  editProfileButton.addEventListener('click', function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      editUsernameInput.value = currentUser.username;
+      editEmailInput.value = currentUser.email;
+      editProfileForm.style.display = 'block';
+      editProfileButton.style.display = 'none';
+  });
+
+  saveProfileButton.addEventListener('click', function() {
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      currentUser.username = editUsernameInput.value;
+      currentUser.email = editEmailInput.value;
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      updateProfileSection();
+      editProfileForm.style.display = 'none';
+      editProfileButton.style.display = 'block';
+  });
+
+  document.addEventListener('click', function(event) {
+      if (!profileButton.contains(event.target) && !profileSidebar.contains(event.target)) {
+          profileSidebar.classList.remove('open');
+      }
+  });
+
+  updateProfileSection();
+
+  setInterval(updateProfileSection, 1000);
+});
+// Existing theme toggle and chatbot code remains unchanged
+  // Existing script for chatbot
+  window.addEventListener('message', function(event) {
+      if (event.data === 'chatbotOpened') {
+          document.getElementById('chatbot-frame').style.width = '380px';
+          document.getElementById('chatbot-frame').style.height = '600px';
+      } else if (event.data === 'chatbotClosed') {
+          document.getElementById('chatbot-frame').style.width = '100px';
+          document.getElementById('chatbot-frame').style.height = '100px';
+      }
+  }, false);
+
+  // Existing script for theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+
+  themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      localStorage.setItem('dark-mode', body.classList.contains('dark-mode'));
+  });
+
+  // Check for saved theme preference
+  if (localStorage.getItem('dark-mode') === 'true') {
+      body.classList.add('dark-mode');
+  }
+  </script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+

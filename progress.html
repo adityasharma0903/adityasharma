@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+        }
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0;
+            transition: width 0.5s ease-in-out;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        .step-label {
+            font-size: 14px;
+            color: #666;
+        }
+        .step-dot {
+            width: 20px;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            transition: background-color 0.3s ease;
+        }
+        .step.active .step-dot {
+            background-color: #4CAF50;
+        }
+        .step.active .step-label {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account Creation Progress</h1>
+        <div class="steps" id="steps-container"></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p>Current Step: <span id="current-step">1</span> / <span id="total-steps">5</span></p>
+        <div class="controls">
+            <button id="prev-btn" onclick="prevStep()" disabled>Previous</button>
+            <button id="next-btn" onclick="nextStep()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const steps = [
+            "Create Account",
+            "Personal Info",
+            "Contact Details",
+            "Security",
+            "Confirmation"
+        ];
+        let currentStep = 1;
+        const totalSteps = steps.length;
+
+        const progressBar = document.getElementById('progress-bar');
+        const currentStepElement = document.getElementById('current-step');
+        const totalStepsElement = document.getElementById('total-steps');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const stepsContainer = document.getElementById('steps-container');
+
+        function createStepElements() {
+            steps.forEach((step, index) => {
+                const stepElement = document.createElement('div');
+                stepElement.className = 'step';
+                stepElement.innerHTML = `
+                    <div class="step-dot"></div>
+                    <div class="step-label">${step}</div>
+                `;
+                stepsContainer.appendChild(stepElement);
+            });
+        }
+
+        function updateProgress() {
+            const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+            currentStepElement.textContent = currentStep;
+            totalStepsElement.textContent = totalSteps;
+
+            document.querySelectorAll('.step').forEach((step, index) => {
+                if (index < currentStep) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            prevBtn.disabled = currentStep === 1;
+            nextBtn.disabled = currentStep === totalSteps;
+            nextBtn.textContent = currentStep === totalSteps ? "Finish" : "Next";
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateProgress();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgress();
+            }
+        }
+
+        createStepElements();
+        updateProgress();
+    </script>
+</body>
+</html>

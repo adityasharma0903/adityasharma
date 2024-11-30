@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captcha Generator</title>
+    <link rel="stylesheet" href="otp.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>
+
+    <div class="container">
+      <header>LOGIN AUTHENTICATION</header>
+      <div class="input_field captch_box">
+        <input type="text" value="" disabled />
+        <button class="refresh_button">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </div>
+      <div class="input_field captch_input">
+        <input type="text" placeholder="Enter captcha" />
+      </div>
+      <div class="message">Entered captcha is correct</div>
+      <div class="input_field button disabled">
+        <button> Submit Captcha</button>
+      </div>
+    </div>
+    <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 380px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe>
+    <script>
+        window.addEventListener('message', function(event) {
+            if (event.data === 'chatbotOpened') {
+                document.getElementById('chatbot-frame').style.width = '380px';
+                document.getElementById('chatbot-frame').style.height = '600px';
+            } else if (event.data === 'chatbotClosed') {
+                document.getElementById('chatbot-frame').style.width = '100px';
+                document.getElementById('chatbot-frame').style.height = '100px';
+            }
+        }, false);
+    </script>
+    <script src="otp.js"></script>
+  </body>
+</html>

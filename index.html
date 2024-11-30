@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitkara University</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/79652d1626.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="chitkara.css">
+    <style>
+
+        #profile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1001;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #profile-sidebar.open {
+            right: 0;
+        }
+
+        #chatbot-frame {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border: none;
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+        }
+
+        .nav-item:hover{
+            color: black;
+        }
+
+
+.profile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transform: translateX(100%);
+}
+
+.profile-sidebar.open {
+    transform: translateX(0);
+}
+
+/* Adjust sidebar width for larger screens */
+@media (min-width: 768px) {
+    .profile-sidebar {
+        width: 300px;
+        transform: translateX(300px);
+    }
+}
+
+/* Ensure the profile button is always visible */
+#profile-button {
+    display: inline-block !important;
+}
+
+/* Add styles for overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Improve visibility of close button */
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    z-index: 1002;
+}
+
+/* Style profile info */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.upload-button {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background-color: #096647;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#edit-profile-form {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+#edit-profile-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#edit-profile-button,
+#save-profile-button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #118837;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#navbarcontact{
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+        /* New styles for image gallery */
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Tablet view: 3 images */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .image-gallery {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .image-gallery img {
+                width: calc(33.33% - 7px);
+            }
+        }
+
+        /* Desktop view: 2 images */
+        @media (min-width: 1024px) {
+            .image-gallery {
+                flex-direction: row;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: center;
+            }
+            .image-gallery img {
+                width: calc(50% - 5px);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="https://www.chitkara.edu.in/wp-content/uploads/2020/03/chitkara-university-logo.png" alt="CHITKARA UNIVERSITY" height="60" class="d-inline-block align-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContact" aria-controls="navbarContact" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContact">
+                    <ul class="navbar-nav ms-auto text-center text-lg-start" style="gap: 25px;">
+                        <li class="nav-item contact-info"><p>For more information<br>give a miss call on<br><b>1800 267 199</b></p></li>
+                        <li class="nav-item contact-info"><p>Admission Helpline<br><b>9501105714</b><br><b>9501105715</b></p></li>
+                        <li class="nav-item contact-info"><p>Delhi & NCR<br>Helpline<br><b>9599368734</b></p></li>
+                        <li class="nav-item contact-info"><p>WB / North East<br>Helpline<br><b>9810355724</b></p></li>
+                        <li class="nav-item contact-info"><p>UP / Bihar / Jharkhand<br>Helpline<br><b>9873288076</b></p></li>
+                        <li class="nav-item contact-info"><p>J&K / Rajasthan<br>Helpline<br><b>9501105716</b></p></li>
+                        <li class="nav-item contact-info"><p>WHATSAPP<br><b>9859000000</b></p></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Second Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link text-white" aria-current="page" href="https://adityasharma0903.github.io/aditya/">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/about/">About us</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/feedback/">Contact us</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/signin/">Login</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/signin/">Sign up</a></li>
+            </ul>
+            <button id="profile-button" class="btn btn-success">Profile</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Third Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-red">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrograms" aria-controls="navbarPrograms" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarPrograms">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="https://adityasharma0903.github.io/about/">ABOUT US</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">OUR INSTITUTIONS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">UNDERGRADUATE PROGRAMS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">GLOBAL PROGRAMS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">PhD PROGRAMS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">ONLINE PROGRAMS</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">RESEARCH</a></li>
+            </ul>
+        </div>
+    </nav>
+    </header>
+
+    <main>
+        <div class="container-fluid p-0">
+            <div class="d-none d-sm-block">
+                <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/banners/new/the-future-is-global-min.webp" class="img-fluid w-100" alt="The future is global - Chitkara University campus view">
+                <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/banners/new/16-02/recognised-for-excellence-banner.webp" class="img-fluid w-100" alt="Chitkara University library">
+              </div>
+            
+              <div class="container-fluid p-0">
+                <div class="image-gallery">
+                    <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/banners/new/the-future-is-global-min.webp" alt="The future is global - Chitkara University campus view">
+                    <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/banners/new/16-02/dual-degree-with-global-banner-desk.webp" alt="Chitkara University students in a classroom">
+                    <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/banners/new/16-02/recognised-for-excellence-banner.webp" alt="Chitkara University library">
+                    <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/Explore-Passionately.webp" alt="Explore Passionately">
+                    <img src="https://www.chitkara.edu.in/wp-content/themes/chitkara/images/home-page/webp/Start-Me-Up.webp" alt="Start Me Up">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="profile-sidebar">
+      <button id="close-sidebar">&times;</button>
+      <div class="profile-info">
+          <div id="profile-picture-container">
+              <img id="profile-picture" src="/placeholder.svg?height=150&width=150" alt="Profile Picture">
+          </div>
+          <input type="file" id="profile-picture-input" accept="image/*">
+          <label for="profile-picture-input" class="upload-button">Change Picture</label>
+          <h3 id="username"></h3>
+          <p id="email"></p>
+          <!-- <p id="registration-id"></p> -->
+          <button id="edit-profile-button">Edit Profile</button>
+          <div id="edit-profile-form" style="display: none;">
+              <input type="text" id="edit-username" placeholder="New Username">
+              <input type="email" id="edit-email" placeholder="New Email">
+              <button id="save-profile-button">Save Changes</button>
+          </div>
+          <button id="logout-button">Logout</button>
+      </div>
+  </div>
+  <p style="color: white; background-color: #d00000; height: 50px; font-size: larger; padding-top: 10px;"><marquee>CHITKARA UNIVERSITY , RAJPURA , PUNJAB</marquee></p>
+
+
+    <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 380px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    const profileButton = document.getElementById('profile-button');
+    const profileSidebar = document.getElementById('profile-sidebar');
+    const closeSidebarButton = document.getElementById('close-sidebar');
+    const logoutButton = document.getElementById('logout-button');
+    const usernameElement = document.getElementById('username');
+    const emailElement = document.getElementById('email');
+    const profilePicture = document.getElementById('profile-picture');
+    const profilePictureInput = document.getElementById('profile-picture-input');
+    const editProfileButton = document.getElementById('edit-profile-button');
+    const editProfileForm = document.getElementById('edit-profile-form');
+    const saveProfileButton = document.getElementById('save-profile-button');
+    const editUsernameInput = document.getElementById('edit-username');
+    const editEmailInput = document.getElementById('edit-email');
+    const chatbotFrame = document.getElementById('chatbot-frame');
+
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.classList.add('sidebar-overlay');
+    document.body.appendChild(overlay);
+
+    function updateProfileSection() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+
+        if (currentUser && isAuthenticated) {
+            profileButton.textContent = `Hi, ${currentUser.username}`;
+            usernameElement.textContent = `Username: ${currentUser.username}`;
+            emailElement.textContent = `Email: ${currentUser.email}`;
+            profilePicture.src = currentUser.profilePicture || '/placeholder.svg?height=128&width=128';
+            profileSidebar.style.display = 'block';
+        } else {
+            profileButton.textContent = 'Profile';
+            usernameElement.textContent = '';
+            emailElement.textContent = '';
+            profilePicture.src = '/placeholder.svg?height=128&width=128';
+            profileSidebar.style.display = 'none';
+        }
+    }
+
+    function toggleSidebar() {
+        profileSidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = profileSidebar.classList.contains('open') ? 'hidden' : '';
+    }
+
+    profileButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+
+        if (currentUser && isAuthenticated) {
+            toggleSidebar();
+        } else {
+            window.location.href = 'feeproject.html';
+        }
+    });
+
+    closeSidebarButton.addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', toggleSidebar);
+
+    logoutButton.addEventListener('click', function() {
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('currentUser');
+        updateProfileSection();
+        toggleSidebar();
+        window.location.href = 'feeproject.html';
+    });
+
+    profilePictureInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profilePicture.src = e.target.result;
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                currentUser.profilePicture = e.target.result;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    editProfileButton.addEventListener('click', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        editUsernameInput.value = currentUser.username;
+        editEmailInput.value = currentUser.email;
+        editProfileForm.style.display = 'block';
+        editProfileButton.style.display = 'none';
+    });
+
+    saveProfileButton.addEventListener('click', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        currentUser.username = editUsernameInput.value;
+        currentUser.email = editEmailInput.value;
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        updateProfileSection();
+        editProfileForm.style.display = 'none';
+        editProfileButton.style.display = 'block';
+    });
+
+    updateProfileSection();
+
+    // Chatbot functionality
+    window.addEventListener('message', function(event) {
+        if (event.data === 'chatbotOpened') {
+            chatbotFrame.classList.add('expanded');
+        } else if (event.data === 'chatbotClosed') {
+            chatbotFrame.classList.remove('expanded');
+        }
+    }, false);
+});
+
+
+
+    </script>
+</body>
+</html>
+
