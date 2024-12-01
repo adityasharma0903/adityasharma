@@ -9,8 +9,165 @@
     <link rel="stylesheet" href="chitkara.css">
     <style>
 
+        #profile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1001;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #profile-sidebar.open {
+            right: 0;
+        }
+
+        #chatbot-frame {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border: none;
+            transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+        }
+
+        .nav-item:hover{
+            color: black;
+        }
+
+
+.profile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1001;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transform: translateX(100%);
+}
+
+.profile-sidebar.open {
+    transform: translateX(0);
+}
 
 /* Adjust sidebar width for larger screens */
+@media (min-width: 768px) {
+    .profile-sidebar {
+        width: 300px;
+        transform: translateX(300px);
+    }
+}
+
+/* Ensure the profile button is always visible */
+#profile-button {
+    display: inline-block !important;
+}
+
+/* Add styles for overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* Improve visibility of close button */
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    z-index: 1002;
+}
+
+/* Style profile info */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.upload-button {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background-color: #096647;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#edit-profile-form {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+#edit-profile-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#edit-profile-button,
+#save-profile-button{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #118837;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#navbarcontact{
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
+
 
 
         /* New styles for image gallery */
@@ -102,7 +259,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarMain">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link text-white" aria-current="page" href="https://adityasharma0903.github.io/aditya/">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" aria-current="page" href="https://adityasharma0903.github.io/adityasharma/">Home</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/about/">About us</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/feedback/">Contact us</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="https://adityasharma0903.github.io/signin/">Login</a></li>
@@ -175,7 +332,7 @@
   <p style="color: white; background-color: #d00000; height: 50px; font-size: larger; padding-top: 10px;"><marquee>CHITKARA UNIVERSITY , RAJPURA , PUNJAB</marquee></p>
 
 
-    <!-- <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 270px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe> -->
+    <iframe src="chatbot.html" style="border: none; position: fixed; bottom: 0; right: 0; width: 380px; height: 600px; z-index: 1000;" id="chatbot-frame"></iframe>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
