@@ -316,3 +316,115 @@ body {
   height: 400px;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Navbar styles */
+.navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+.dropdown-item {
+  color: #fff;
+}
+
+.dropdown-item:hover {
+  background-color: #495057;
+}
+
+/* Mobile styles */
+@media (max-width: 991px) {
+  .navbar-light .navbar-nav .nav-link {
+    color: #000 !important;
+  }
+
+  .navbar-light .dropdown-menu {
+    background-color: #f8f9fa;
+  }
+
+  .navbar-light .dropdown-item {
+    color: #000;
+  }
+
+  .navbar-light .dropdown-item:hover {
+    background-color: #e9ecef;
+  }
+
+  /* Ensure menu is scrollable on small screens */
+  .navbar-collapse {
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+
+  /* Improve touch targets for mobile */
+  .nav-link {
+    padding: 0.75rem 1rem;
+  }
+
+  /* Ensure profile button is always visible */
+  #profile-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 4rem;
+  }
+}
+
+/* Styles for very small screens */
+@media (max-width: 400px) {
+  .navbar-brand img {
+    height: 40px;
+  }
+
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem;
+  }
+
+  #profile-button {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    right: 3.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Third navbar specific styles */
+.navbar-programs {
+  background-color: #d00000;
+}
+
+.navbar-programs .nav-link {
+  color: #fff !important;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-programs .nav-item {
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .navbar-programs .navbar-nav {
+    flex-direction: column;
+  }
+}
+
